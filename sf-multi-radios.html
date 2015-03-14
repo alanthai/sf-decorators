@@ -1,0 +1,19 @@
+<div class="form-group {{form.htmlClass}}" ng-class="{'has-error': hasError(), 'has-success': hassSuccess()}" ng-repeat="group in form.groups">
+	<label class="control-label" ng-show="group && !group.notitle && group.title">
+		{{group.title}}
+	</label>
+	<div class="radio" ng-repeat="item in group.enum">
+		<label>
+			<input type="radio"
+				class="{{form.fieldHtmlClass}}"
+				sf-changed="form"
+				ng-disabled="form.readonly"
+				ng-model="$$value$$"
+				ng-value="item"
+				name="{{form.key.slice(-1)[0]}}">
+			<span ng-bind-html="item"></span>
+		</label>
+	</div>
+	
+	<div class="help-block" ng-show="(hasError() && errorMessage(schemaError())) || form.description" ng-bind-html="(hasError() && errorMessage(schemaError())) || form.description"></div>
+</div>
